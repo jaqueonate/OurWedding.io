@@ -8,8 +8,8 @@ const invitados = {
 };
 
 app.get('/api/:nombre', (req, res) => {
-  const nombre = req.params.nombre;
-  const invitado = invitados[nombre];
+  const nombre = req.params.nombre.toLowerCase();
+ const invitado = Object.values(invitados).find(inv => inv.nombre.toLowerCase() === nombre);
   if (invitado) {
     res.json(invitado);
   } else {
