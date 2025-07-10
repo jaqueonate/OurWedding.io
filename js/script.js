@@ -232,10 +232,10 @@ btnConsultar.addEventListener('click', (event) => {
   //Función para mostrar invitación a personas que ven la wen ajenas al evento
   if (input.value === "GIFT") {
     pruebaDiv.innerHTML = `
-      <h1>¡ Nos encantaría contar con tu presencia en nuestra boda, por lo cual hemos reservado un asiento especialmente para ti. !</h1>
+      <h1>¡ Nos encantaría contar con tu presencia en nuestra boda!</h1>
       </br>
-      <div class="entradas">Aquí va la información de la cantidad de entradas</div>
-      <div class="special-message">Aquí iría algún saludo especial que puedes personalizar con el uso de una API como la que aparece en script.js</div>
+      <div class="entradas">por lo cual hemos reservado un asiento especialmente para ti. </div>
+      <div class="special-message"> </div>
       </br></br>
       <div class="footer"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>  MÁS DETALLES  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
     `;
