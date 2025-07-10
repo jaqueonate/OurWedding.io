@@ -4,7 +4,7 @@ const app = express();
 const invitados = {
   "Camila": { nombre: "Camila", mesa: "4", confirmado: true },
   "Javier": { nombre: "Javier", mesa: "8", confirmado: false },
-  "Ana":    { nombre: "Ana",    mesa: "2", confirmado: true }
+  "Ana":    { nombre: "ANA",    mesa: "2", confirmado: true }
 };
 
 app.get('/api/:nombre', (req, res) => {
