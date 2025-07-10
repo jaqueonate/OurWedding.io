@@ -219,108 +219,43 @@ const envelope = document.querySelector('.envelope.paper');
 const pruebaDiv = document.getElementById('prueba');
 const ShowInvitation= document.getElementById('section-to-guests');
 
-btnConsultar.addEventListener('click', (event) => {
+btnConsultar.addEventListener('click', async (event) => {
   event.preventDefault();
+
   loading.style.display = 'block';
   errormessage.style.display = 'none';
   envelope.style.display = 'none';
   pruebaDiv.style.display = 'none';
   ShowInvitation.style.display = 'none';
-   // Evita que el formulario se envíe y la página se recargue
+
   const apiURL = 'https://mibodaangelywendy.uc.r.appspot.com/api/' + input.value;
 
-  //Función para mostrar invitación a personas que ven la wen ajenas al evento
-  if (input.value === "GIFT") {
-    pruebaDiv.innerHTML = `
-      <h1>¡ Querido visitante me alegra que puedas ver mi invitación !</h1>
-      </br>
-      <div class="entradas">Aquí va la información de la cantidad de entradas</div>
-      <div class="special-message">Aquí iría algún saludo especial que puedes personalizar con el uso de una API como la que aparece en script.js</div>
-      </br></br>
-      <div class="footer"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>  MÁS DETALLES  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
-    `;
-    
-    let code = document.getElementById('VIP-CODE');
-    input.value = "";
-    fadeOut(code);
-    
-    setTimeout(function() {
-      fadeIn(envelope);
-      fadeInFlex(pruebaDiv);
-    }, 2000);
-    
-    setTimeout(function() {
-      fadeIn(ShowInvitation);
-    }, 4000);
-    
-    return; // Salir de la función después de mostrar el mensaje especial
-  }
-  // Aquí puedes realizar la consulta a la API utilizando la URL generada
-  fetch(apiURL)
-  .then(response => response.json())
-  .then(data => {
-  console.log(data);
-  loading.style.display = 'none';
-  if(data.ID === input.value) {
-    for (let prop in data) {
-      if (data[prop] === null || data[prop] === "NULL") {
-        data[prop] = '';} };
-    let saludo = (data.SEX === 'M') ? 'Querido' : (data.SEX === 'F') ? 'Querida' : 'Hola';
-    let encabezado = `${saludo} ${data.APELLIDOS} ${data.NOMBRES}`.split(" ");
-    for(let i = 0; i < encabezado.length; i++) {
-      if (typeof encabezado[i] === 'string' && encabezado[i].length > 1) {
-        encabezado[i] = encabezado[i][0].toUpperCase() + encabezado[i].substring(1).toLowerCase();
-      }
-      };
-    if (data.CONFIRMADO.length > 3) {
-      let texto= data.CONFIRMADO;
-      texto = texto.toLowerCase()
-      let textoOracion = texto.replace(/(^\w|\.\s*\w)/g, function(match) {
-        return match.toUpperCase();
-      });
-      data.CONFIRMADO=`${textoOracion} </br> ` ;
-    };
-    encabezado = encabezado.join(" ");
-    let entradas = (data.NUMBER_GUEST === "1") ? 'Nos encantaría contar con tu presencia en nuestra boda, por lo cual hemos reservado un asiento especialmente para ti.' : `Nos encantaría contar con su presencia en nuestra boda, por lo cual hemos reservado <span>${data.NUMBER_GUEST}</span> asientos especialmente para ustedes.`;
-    pruebaDiv.innerHTML = `
-      <h1>¡ ${encabezado} !</h1>
-      </br>
-      <div class="entradas">${entradas}</div>
-      <div class="special-message">${data.CONFIRMADO}</div>
-      </br></br>
-      <div class="footer"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>  MÁS DETALLES  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
-    `;     
-    let code=document.getElementById('VIP-CODE');
-    input.value="";
-    fadeOut(code);
-    setTimeout(function() {
-      fadeIn(envelope);
-      fadeInFlex(pruebaDiv);
-    }, 2000);
-    setTimeout(function() {
-      fadeIn(ShowInvitation);
-    }, 4000);
+  try {
+    const response = await fetch(apiURL);
+    const data = await response.json();
 
-  } else {
-    pruebaDiv.style.display = 'none';
-    errormessage.style.display = 'block';
-    envelope.style.display = 'none';
-    ShowInvitation.style.display = 'none';
-    input.value="";
-  };
-  })
-  .catch(error => {
+    loading.style.display = 'none';
 
-    console.error(error);
+    if (data && data.nombre) {
+      ShowInvitation.style.display = 'block';
+      ShowInvitation.innerHTML = `
+        <h2>¡Hola ${data.nombre}!</h2>
+        <p>Estás invitado(a) al matrimonio el <strong>06 de diciembre de 2025</strong> a las <strong>15:00 hrs</strong>.</p>
+        <p>Tu mesa asignada es: <strong>${data.mesa}</strong></p>
+        <p>Nos emociona contar contigo en este día tan especial 💍🎉</p>
+      `;
+    } else {
+      errormessage.style.display = 'block';
+      errormessage.textContent = "No pudimos encontrar tu invitación. Revisa tu nombre o código.";
+    }
+
+  } catch (error) {
     loading.style.display = 'none';
     errormessage.style.display = 'block';
-    envelope.style.display = 'none';
-    ShowInvitation.style.display = 'none';
-    input.value="";
-  
-   
-  });
+    errormessage.textContent = "Ocurrió un error al conectar con el servidor. Inténtalo más tarde.";
+  }
 });
+
 
 
 //-- cambiar el placeholder del input -----
