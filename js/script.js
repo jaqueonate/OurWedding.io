@@ -228,7 +228,7 @@ btnConsultar.addEventListener('click', async (event) => {
   pruebaDiv.style.display = 'none';
   ShowInvitation.style.display = 'none';
 
-  const apiURL = 'https://mibodaangelywendy.uc.r.appspot.com/api/' + input.value;
+  const apiURL = 'https://ourwedding-io.onrender.com/api/' + nombre;
 
   try {
     const response = await fetch(apiURL);
