@@ -2392,27 +2392,49 @@ justify-content: center;
 .music {
 	display: none;
 }
-/* === Estilos para sección Recomendaciones de Lagos === */
-.story-row img {
+/* === Estilo de imágenes de lagos === */
+.lago-img {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+/* === Corrección de filas tipo historia === */
+.story-row {
+  margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
+/* Ajustes internos */
+.s-box1, .s-box2 {
+  padding: 20px;
+}
+
+.s-box1 img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* === Responsivo para móviles === */
 @media screen and (max-width: 768px) {
   .story-row {
     flex-direction: column;
+    text-align: center;
+  }
+
+  .border-r {
+    border-right: none !important;
   }
 
   .s-box1, .s-box2 {
-    text-align: center !important;
-    padding: 20px 10px;
-    border: none !important;
+    padding: 10px 20px;
   }
 
-  .story-row img {
+  .lago-img {
     max-width: 90%;
     margin: auto;
   }
