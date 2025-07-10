@@ -121,47 +121,34 @@
 
 
   <!----------------------- Invitation-card-section starts here -------------------->
-  <!-- Invitation-card-section starts here -->
-<div id="invitation_card_container">
-  <div class="container-particles-js" id="particles-js">
+   <div id="invitation_card_container" >
+    <div class="container-particles-js" id="particles-js">
+      <div class="envelope" id="VIP-CODE">
+        <div class="title-invitation"><h1><i class="fa fa-angle-double-left" aria-hidden="true"></i> INVITACIÓN VIP <i class="fa fa-angle-double-right" aria-hidden="true"></i></h1></div>
+        <form id="consulta_invitado" class="form-inline">
+          <div class="form-group">
+            <input type="text" class="form-control" id="id_invitado" placeholder="Ingrese su código de invitación" required>
+          </div>
+          <button type="submit" class="btn btn-primary" id="consulta-api">ENVIAR</button>
+        </form>
+        
+        <div class="loading">
+          <i class="fa fa-spinner fa-spin"></i> Cargando...
+        </div>
+        <div class="error-message">
+          <i class="fa fa-exclamation-circle"></i> Hubo un error. Por favor, inténtalo de nuevo.
+        </div>
+      </div>
     
-    <!-- FORMULARIO DE CONSULTA -->
-    <div class="envelope" id="VIP-CODE">
-      <div class="title-invitation">
-        <h1><i class="fa fa-angle-double-left" aria-hidden="true"></i> INVITACIÓN VIP <i class="fa fa-angle-double-right" aria-hidden="true"></i></h1>
-      </div>
-      <form id="consulta_invitado" class="form-inline">
-        <div class="form-group">
-          <label for="id_invitado" class="visually-hidden">Código de invitación:</label>
-          <input type="text" class="form-control" id="id_invitado" placeholder="Ingrese su código de invitación" required>
+      <div class="envelope paper">
+        <div id="prueba">
         </div>
-        <button type="submit" id="consulta-api">ENVIAR</button>
-      </form>
-
-      <div class="loading" style="display: none;">
-        <i class="fa fa-spinner fa-spin"></i> Cargando...
-      </div>
-      <div class="error-message" style="display: none;">
-        <i class="fa fa-exclamation-circle"></i> Hubo un error. Por favor, inténtalo de nuevo.
+        <div><i class="bi bi-chevron-down"></i></div>
       </div>
     </div>
 
-    <!-- INVITACIÓN PERSONALIZADA -->
-    <div class="envelope paper">
-      <div id="prueba">
-        <div id="section-to-guests" style="display: none;">
-          <h2><i class="fa fa-gift"></i> Tu invitación personalizada:</h2>
-          <p id="nombre"></p>
-          <p id="mesa"></p>
-          <p id="confirmado"></p>
-        </div>
-      </div>
-      <div><i class="bi bi-chevron-down"></i></div>
-    </div>
   </div>
-</div>
-
-  <!----------------------- Invitation-card-section ends here -------------------->
+    <!----------------------- Invitation-card-section ends here -------------------->
 <!----------------------- SECTION VIP  -------------------->
 <section id="section-to-guests">
   <!----------------------- about-section starts here -------------------->
