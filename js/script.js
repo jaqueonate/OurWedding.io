@@ -207,10 +207,10 @@ setInterval(() => {
 // ...................invitation card ...............//
 const input = document.getElementById('id_invitado');
 
-
-input.addEventListener('input', function() {
+input.addEventListener('input', function () {
   this.value = this.value.toUpperCase();
 });
+
 // API-CONSULTA LISTA DE INVITADOS
 const btnConsultar = document.getElementById('consulta-api');
 const loading = document.querySelector('.loading');
@@ -226,7 +226,6 @@ btnConsultar.addEventListener('click', async (event) => {
   errormessage.style.display = 'none';
   ShowInvitation.style.display = 'none';
 
-  const input = document.getElementById('id_invitado');
   const nombre = input.value.trim().toLowerCase();
   const apiURL = `https://ourwedding-io.onrender.com/api/${nombre}`;
 
