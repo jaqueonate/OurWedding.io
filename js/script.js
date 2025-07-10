@@ -224,37 +224,30 @@ btnConsultar.addEventListener('click', async (event) => {
 
   loading.style.display = 'block';
   errormessage.style.display = 'none';
-  envelope.style.display = 'none';
-  pruebaDiv.style.display = 'none';
   ShowInvitation.style.display = 'none';
 
-  const apiURL = 'https://ourwedding-io.onrender.com/api/' + nombre;
+  const nombre = input.value.trim();
+  const apiURL = `https://ourwedding-io.onrender.com/api/${nombre}`;
 
   try {
     const response = await fetch(apiURL);
+    if (!response.ok) throw new Error("Invitado no encontrado");
+
     const data = await response.json();
 
+    document.getElementById('nombre').innerText = data.nombre;
+    document.getElementById('mesa').innerText = `Mesa: ${data.mesa}`;
+    document.getElementById('confirmado').innerText = data.confirmado ? "✅ Confirmado" : "❌ No confirmado";
+
+    ShowInvitation.style.display = 'block';
     loading.style.display = 'none';
-
-    if (data && data.nombre) {
-      ShowInvitation.style.display = 'block';
-      ShowInvitation.innerHTML = `
-        <h2>¡Hola ${data.nombre}!</h2>
-        <p>Estás invitado(a) al matrimonio el <strong>06 de diciembre de 2025</strong> a las <strong>15:00 hrs</strong>.</p>
-        <p>Tu mesa asignada es: <strong>${data.mesa}</strong></p>
-        <p>Nos emociona contar contigo en este día tan especial 💍🎉</p>
-      `;
-    } else {
-      errormessage.style.display = 'block';
-      errormessage.textContent = "No pudimos encontrar tu invitación. Revisa tu nombre o código.";
-    }
-
   } catch (error) {
+    console.error(error);
     loading.style.display = 'none';
     errormessage.style.display = 'block';
-    errormessage.textContent = "Ocurrió un error al conectar con el servidor. Inténtalo más tarde.";
   }
 });
+
 
 
 
