@@ -175,7 +175,7 @@ play_music.addEventListener('click',function(){
 
 //------------Here we set the time of the wedding for educational purposes----------------//
 const currentDate = new Date("2025-12-06T00:00:00");  // Obtiene la fecha actual
-currentDate.setHours(24, 0, 0, 0);  // Establece la hora deseada (21:00:00)
+currentDate.setHours(15, 0, 0, 0);  // Establece la hora deseada (21:00:00)
 const weddingDate = currentDate.getTime(); 
 // Update the countdown every second
 setInterval(() => {
