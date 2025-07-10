@@ -2392,3 +2392,28 @@ justify-content: center;
 .music {
 	display: none;
 }
+/* === Estilos para sección Recomendaciones de Lagos === */
+.story-row img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .story-row {
+    flex-direction: column;
+  }
+
+  .s-box1, .s-box2 {
+    text-align: center !important;
+    padding: 20px 10px;
+    border: none !important;
+  }
+
+  .story-row img {
+    max-width: 90%;
+    margin: auto;
+  }
+}
