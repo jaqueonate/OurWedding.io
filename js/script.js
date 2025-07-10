@@ -226,7 +226,7 @@ btnConsultar.addEventListener('click', async (event) => {
   errormessage.style.display = 'none';
   ShowInvitation.style.display = 'none';
 
-  const nombre = input.value.trim();
+  const input = document.getElementById('nombre-invitado');
   const apiURL = `https://ourwedding-io.onrender.com/api/${nombre}`;
 
   try {
