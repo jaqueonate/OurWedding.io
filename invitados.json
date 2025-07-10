@@ -1,0 +1,22 @@
+{
+  "Camila": {
+    "nombre": "Camila",
+    "mesa": "4",
+    "confirmado": true
+  },
+  "Javier": {
+    "nombre": "Javier",
+    "mesa": "8",
+    "confirmado": false
+  },
+  "Ana": {
+    "nombre": "Ana",
+    "mesa": "2",
+    "confirmado": true
+  },
+  "Valentina": {
+    "nombre": "Valentina",
+    "mesa": "7",
+    "confirmado": true
+  }
+}
