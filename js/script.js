@@ -207,10 +207,10 @@ setInterval(() => {
 // ...................invitation card ...............//
 const input = document.getElementById('id_invitado');
 
-input.addEventListener('input', function () {
+
+input.addEventListener('input', function() {
   this.value = this.value.toUpperCase();
 });
-
 // API-CONSULTA LISTA DE INVITADOS
 const btnConsultar = document.getElementById('consulta-api');
 const loading = document.querySelector('.loading');
@@ -219,36 +219,107 @@ const envelope = document.querySelector('.envelope.paper');
 const pruebaDiv = document.getElementById('prueba');
 const ShowInvitation= document.getElementById('section-to-guests');
 
-btnConsultar.addEventListener('click', async (event) => {
+btnConsultar.addEventListener('click', (event) => {
   event.preventDefault();
-
   loading.style.display = 'block';
   errormessage.style.display = 'none';
+  envelope.style.display = 'none';
+  pruebaDiv.style.display = 'none';
   ShowInvitation.style.display = 'none';
+   // Evita que el formulario se envíe y la página se recargue
+  const apiURL = 'https://mibodaangelywendy.uc.r.appspot.com/api/' + input.value;
 
-  const nombre = input.value.trim().toLowerCase();
-  const apiURL = `https://ourwedding-io.onrender.com/api/${nombre}`;
+  //Función para mostrar invitación a personas que ven la wen ajenas al evento
+  if (input.value === "GIFT") {
+    pruebaDiv.innerHTML = `
+      <h1>¡ Querido visitante me alegra que puedas ver mi invitación !</h1>
+      </br>
+      <div class="entradas">Aquí va la información de la cantidad de entradas</div>
+      <div class="special-message">Aquí iría algún saludo especial que puedes personalizar con el uso de una API como la que aparece en script.js</div>
+      </br></br>
+      <div class="footer"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>  MÁS DETALLES  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+    `;
+    
+    let code = document.getElementById('VIP-CODE');
+    input.value = "";
+    fadeOut(code);
+    
+    setTimeout(function() {
+      fadeIn(envelope);
+      fadeInFlex(pruebaDiv);
+    }, 2000);
+    
+    setTimeout(function() {
+      fadeIn(ShowInvitation);
+    }, 4000);
+    
+    return; // Salir de la función después de mostrar el mensaje especial
+  }
+  // Aquí puedes realizar la consulta a la API utilizando la URL generada
+  fetch(apiURL)
+  .then(response => response.json())
+  .then(data => {
+  console.log(data);
+  loading.style.display = 'none';
+  if(data.ID === input.value) {
+    for (let prop in data) {
+      if (data[prop] === null || data[prop] === "NULL") {
+        data[prop] = '';} };
+    let saludo = (data.SEX === 'M') ? 'Querido' : (data.SEX === 'F') ? 'Querida' : 'Hola';
+    let encabezado = `${saludo} ${data.APELLIDOS} ${data.NOMBRES}`.split(" ");
+    for(let i = 0; i < encabezado.length; i++) {
+      if (typeof encabezado[i] === 'string' && encabezado[i].length > 1) {
+        encabezado[i] = encabezado[i][0].toUpperCase() + encabezado[i].substring(1).toLowerCase();
+      }
+      };
+    if (data.CONFIRMADO.length > 3) {
+      let texto= data.CONFIRMADO;
+      texto = texto.toLowerCase()
+      let textoOracion = texto.replace(/(^\w|\.\s*\w)/g, function(match) {
+        return match.toUpperCase();
+      });
+      data.CONFIRMADO=`${textoOracion} </br> ` ;
+    };
+    encabezado = encabezado.join(" ");
+    let entradas = (data.NUMBER_GUEST === "1") ? 'Nos encantaría contar con tu presencia en nuestra boda, por lo cual hemos reservado un asiento especialmente para ti.' : `Nos encantaría contar con su presencia en nuestra boda, por lo cual hemos reservado <span>${data.NUMBER_GUEST}</span> asientos especialmente para ustedes.`;
+    pruebaDiv.innerHTML = `
+      <h1>¡ ${encabezado} !</h1>
+      </br>
+      <div class="entradas">${entradas}</div>
+      <div class="special-message">${data.CONFIRMADO}</div>
+      </br></br>
+      <div class="footer"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>  MÁS DETALLES  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+    `;     
+    let code=document.getElementById('VIP-CODE');
+    input.value="";
+    fadeOut(code);
+    setTimeout(function() {
+      fadeIn(envelope);
+      fadeInFlex(pruebaDiv);
+    }, 2000);
+    setTimeout(function() {
+      fadeIn(ShowInvitation);
+    }, 4000);
 
-  try {
-    const response = await fetch(apiURL);
-    if (!response.ok) throw new Error("Invitado no encontrado");
+  } else {
+    pruebaDiv.style.display = 'none';
+    errormessage.style.display = 'block';
+    envelope.style.display = 'none';
+    ShowInvitation.style.display = 'none';
+    input.value="";
+  };
+  })
+  .catch(error => {
 
-    const data = await response.json();
-
-    document.getElementById('nombre').innerText = data.nombre;
-    document.getElementById('mesa').innerText = `Mesa: ${data.mesa}`;
-    document.getElementById('confirmado').innerText = data.confirmado ? "✅ Confirmado" : "❌ No confirmado";
-
-    ShowInvitation.style.display = 'block';
-    loading.style.display = 'none';
-  } catch (error) {
     console.error(error);
     loading.style.display = 'none';
     errormessage.style.display = 'block';
-  }
+    envelope.style.display = 'none';
+    ShowInvitation.style.display = 'none';
+    input.value="";
+   
+  });
 });
-
-
 
 
 //-- cambiar el placeholder del input -----
