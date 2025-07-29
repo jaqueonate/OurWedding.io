@@ -924,26 +924,38 @@ justify-content: center;
 /*-------------- Story section Ends here ------------*/
 
 /*----------------- REGALOS section starts here -----------------*/
- 
+
 /* Centra el contenedor principal */
 .regalos-container {
   width: 90%;
   max-width: 1300px;
-  margin: 0 auto; /* ← Esto lo centra horizontalmente */
+  margin: 0 auto;
 }
 
-/* Asegura que los headings estén dentro de una columna */
+/* Asegura que los encabezados estén alineados */
 .headings {
   width: 100%;
   text-align: center;
 }
 
-/* Centra el bloque del banco */
+/* Mejora la separación entre el texto y el bloque del banco */
+.message-section {
+  margin-bottom: 40px;
+}
+
+.para-section p {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Centra el bloque del banco y mejora su ubicación */
 #regalos .row.justify-content-center {
   display: flex;
   justify-content: center;
+  margin-top: 60px;
 }
 
+/* Define el tamaño y centrado del contenedor del banco */
 #regalos .col-md-6 {
   max-width: 600px;
   width: 100%;
@@ -951,6 +963,10 @@ justify-content: center;
   text-align: center;
 }
 
+/* Mejora la separación interna de los textos dentro del bloque */
+#regalos .col-md-6 p {
+  margin-bottom: 12px;
+}
 
 /*------------------- REGALOS section Ends here -------------------*/
 
