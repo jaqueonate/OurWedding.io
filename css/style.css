@@ -924,147 +924,32 @@ justify-content: center;
 /*-------------- Story section Ends here ------------*/
 
 /*----------------- REGALOS section starts here -----------------*/
-#regalos {
-  width: 100%;
-  padding-top: 50px;
-  border-bottom: 5px solid var(--orange);
-  padding-bottom: 80px;
-}
-
-#regalos > div > div:nth-child(1) > div > h1{
-  letter-spacing: 10px;
-  font-size: 8rem;
-}
-
-#regalos > div > div:nth-child(1) > div > h2{
-  margin-bottom: 0px;
-  margin-top: 0px;
-  font-size: 4rem;
-}
-
-.regalos-container{
+ 
+/* Centra el contenedor principal */
+.regalos-container {
   width: 90%;
   max-width: 1300px;
+  margin: 0 auto; /* ← Esto lo centra horizontalmente */
 }
 
-.message-section{
+/* Asegura que los headings estén dentro de una columna */
+.headings {
   width: 100%;
-  padding: 3rem;
-  margin-top: 1.5rem;
-}
-
-.para-section p{
-  color: var(--cream-grey);
-  font-family: var(--Montserrat);
-  font-size: 1.5rem;
-  line-height: 2rem;
   text-align: center;
-  padding: 0 2rem;
-  padding-bottom: 2rem;
-  
 }
 
-.regalos-row{
-  width: 100%;
-  flex-wrap: wrap;
+/* Centra el bloque del banco */
+#regalos .row.justify-content-center {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.box-regalos{
-  flex-basis: calc(46%-30px);
-  max-width: 46%;
-  padding: 0px;
-  border: 3px solid var(--orange);
-  border-radius: 10px;
-  margin-bottom: 40px;
-  overflow: hidden;
-  background-color: var(--soft-yellow);
-}
-
-.logo-regalos{
-  width: 45%;
-  height: 100%;
-  padding: 0px;
-}
-
-.logo-regalos img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.descripcion-regalo{
-  width: 55%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:center;
-  padding: 0 30px 0 30px;
-  text-align: center;
-}
-
-.descripcion-regalo h3{
-  font-family: var(--Montserrat);
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom:1.5rem;
-  text-align: center;
-  color:var(--orange)
-}
-
-.descripcion-regalo p{
-  font-family: var(--Montserrat);
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--dark);
-  padding: 0;
-}
-
-.cuenta{
-  font-family: var(--Montserrat);
-  font-size: 1.1rem;
-  font-weight: 900;
-}
-
-
-.gly-yape{
-  margin-right: 5px;
-  color: var(--orange);
-}
-
-.celular-yape{
-  font-family: var(--Montserrat);
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
-.descripcion-regalo .row{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
   justify-content: center;
 }
 
-.descripcion-regalo .row .col-svg{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items:start;
-  margin:0;
-  padding: 0;
+#regalos .col-md-6 {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
-.descripcion-regalo .row .col-svg i{
-  font-size: 2.2rem;
-  color: var(--orange);
-  margin-right: 10px;
-}
-
-
 
 
 /*------------------- REGALOS section Ends here -------------------*/
