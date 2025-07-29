@@ -1348,75 +1348,24 @@ justify-content: center;
    }
   
   /*--REGALOS SECTION---*/
-  .box-regalos {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
 
-  #regalos{
-    padding-top: 10px;
-    padding-bottom: 50px;
-    margin-bottom:0px;
+/* Centrado del bloque de regalo */
+#regalos .row.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
 
-  }
-  #regalos > div > div:nth-child(1) > div > h1{
-    letter-spacing: 8px;
-    font-size: 100px;
-  }
-  
-  #regalos > div > div:nth-child(1) > div > h2{
-    font-size: 60px;
-  }
-  
-  .message-section{
-    padding: 0;
-    margin:0;
-  }
+#regalos .col-md-6 {
+  max-width: 600px; /* Ajusta según tu diseño */
+  width: 100%;
+  margin: 0 auto;
+}
 
-  .para-section p{
-    padding:0;
-    margin-bottom: 6vw;
-    padding-top:2vw;
-  }
-
-  .regalos-row{
-    flex-direction: row-reverse;
-  }
-
-
-  .box-regalos {
-    flex-basis: 100%;
-    max-width: 80%;
-    margin-bottom: 4vw;
-  }
-
-  .descripcion-regalo{
-    padding:0 2vw 0 2vw;
-  }
-
-  .descripcion-regalo h3{
-    font-size: 2.5vw;
-    margin-bottom: 1vw;
-    margin-top:0;
-  }
-
-  .descripcion-regalo p{
-    font-size: 2vw;
-    font-weight: 400;
-    margin-bottom:0px;
-  }
-  .cuenta{
-    font-size: 2vw;
-  }
-
-  .descripcion-regalo .row .col-svg i{
-    font-size: 2.5vw;
-    margin-right: 0;
-  }
-
-  .celular-yape{
-    font-size: 2.3vw;
-  }
+/* Asegura que el texto esté centrado */
+#regalos .col-md-6 p,
+#regalos .col-md-6 h3 {
+  text-align: center;
+}
 
   /*--INVITACION SECTION 1200px to less---*/
 
