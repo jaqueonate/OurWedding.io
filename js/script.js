@@ -200,7 +200,7 @@ setInterval(() => {
     // If the count down is over, write some text 
   if (timeRemaining < 0) {
     document.getElementById("countdown").classList.add("countdown-finished");
-    document.getElementById("countdown").innerHTML = "¡ Que viva la familia Ramirez Aranda !";
+    document.getElementById("countdown").innerHTML = "¡ Felicidades !";
   }
 }, 1000);;
 
